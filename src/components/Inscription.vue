@@ -1,20 +1,24 @@
 <template>
     <div class="Inscription">
         <h1>Inscription</h1>
-        <form action="">
+        <form action="" v-if="have__token || get__token">
+            <p v-if="get__token"> ur token is : {{Token}}</p>
+            <input type="text" placeholder="token" v-model="input_token">
+            <p v-if="token_invalide">Token invalide please try again</p>
+            <button  @click.prevent @click="valide__token" >Valide</button>
+            <button @click="have__token = false" v-if="get__token != true">i don't have token</button>
+        </form>
+        <form action="" v-else>
             <input type="text" placeholder="First Name" v-model="Fname">
             <input type="text" placeholder="Last Name"  v-model="Lname">
             <input type="text" placeholder="Email" v-model="Email">
              <input type="text" placeholder="Phone Number" v-model="PhoneNumber">
             <button  @click.prevent @click="submit__data">Sign up</button>
+            <button @click="have__token = true">i have token</button>
             <p v-if="error_field">Error in some field</p>
             <p v-if="exist_Email">Email exist</p>
         </form>
-        <form action="" v-if="get__token">
-          <p> ur token is : {{Token}}</p>
-          <input type="text" placeholder="token" v-model="input_token">
-          <button  @click.prevent @click="valide__token" >Valide</button>
-        </form>
+
     </div>
 </template>
 
@@ -25,6 +29,7 @@ export default {
     name:'Inscription',
     data (){
         return{
+            have__token:true,
             api :"http://localhost/Lowyer__Booking/back_end/api/Api.php",
             Fname:"",
             Lname:"",
@@ -34,7 +39,10 @@ export default {
             exist_Email:false,
             get__token:false,
             Token:"",
-            input_token:""
+            input_token:"",
+            params : {method:"GET",headers:{'Content-type': 'application/json'}},
+            token_invalide : false
+
         }
     },
     methods:{
@@ -45,9 +53,8 @@ export default {
           return reponse;
       },
       submit__data:function(){
-          let params = {method:"GET",headers:{'Content-type': 'application/json'}}
           let search =`?Email=${this.Email}`
-          let get_email = this.fetch__methode(params,search)
+          let get_email = this.fetch__methode(this.params,search)
           get_email.then((result) =>{
             let exist = result.data.length;
             if(exist == 0){
@@ -81,7 +88,19 @@ export default {
           })
       },
       valide__token:function(){
-        console.log(this.input_token)
+        let token = this.input_token
+        let search =`?Token=${token}`
+        let user_data = this.fetch__methode(this.params,search)
+        user_data.then((result) =>{
+          if(result.data.length == 1)
+          {
+            this.token_invalide = false
+            console.log(result)
+          }
+          else{
+            this.token_invalide = true
+          }
+        })
       }
     }
 }

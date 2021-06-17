@@ -1,0 +1,14 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    background-color: crimson;
+    padding: 30px 0px !important;
+    a{
+        color: white;
+        font-size: 20px;
+        padding: 0px 40px;
+        &:hover{
+            color:rgb(39, 85, 236) ;
+        }
+    }
+}

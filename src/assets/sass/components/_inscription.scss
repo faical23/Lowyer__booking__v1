@@ -1,4 +1,4 @@
-.Inscription{
+.Inscription,.login{
         text-align: center;
         input{
           display: block;
@@ -21,6 +21,8 @@
             cursor: pointer;
             background-color: black;
             color: white;
+            display: block;
+            margin: 20px auto;
             &:hover {
             background-color: white;
             color: black;

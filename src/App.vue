@@ -1,12 +1,13 @@
 <template>
   <div id="nav">
-    <Inscription></Inscription>
+  <MYheader></MYheader>
   </div>
   <router-view/>
 </template>
 
 <script>
-import Inscription from './components/Inscription.vue'
+import MYheader from './components/header.vue'
+
 export default {
   
     name:'home',
@@ -15,7 +16,7 @@ export default {
         }
     },
     components:{
-      Inscription
+      MYheader
     }
 }
 </script>
