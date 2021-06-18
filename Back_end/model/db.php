@@ -48,10 +48,10 @@ include "connect.php";
             foreach ($conditions as $key => $value) {
                 if($i == 0)
                 {
-                    $sql .= "WHERE $key LIKE '$value%'";
+                    $sql .= "WHERE $key = '$value'";
                 }
                 else{
-                    $sql .= " AND $key LIKE '$value'%";
+                    $sql .= " AND $key = '$value'";
                 }
                 $i++;
             }

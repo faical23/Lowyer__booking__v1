@@ -41,14 +41,17 @@ export default {
             Token:"",
             input_token:"",
             params : {method:"GET",headers:{'Content-type': 'application/json'}},
-            token_invalide : false
+            token_invalide : false,
+            msg:"test msg"
 
         }
+    },
+    components:{
     },
     methods:{
 
       fetch__methode : async function (params,search){
-          let rep = await fetch(`http://localhost/Lowyer_v2/back_end/api/Api.php${search}` , params);
+          let rep = await fetch(`http://localhost/Lowyer__booking__v1/back_end/api/Api.php${search}` , params);
           let reponse = await rep.json();
           return reponse;
       },
@@ -56,8 +59,8 @@ export default {
           let search =`?Email=${this.Email}`
           let get_email = this.fetch__methode(this.params,search)
           get_email.then((result) =>{
-            let exist = result.data.length;
-            if(exist == 0){
+            let exist = result.data
+            if(exist != "exist email"){
               this.exist_Email= false
               let data=JSON.stringify({
                 "Fname":this.Fname,
@@ -69,6 +72,7 @@ export default {
             }
             else{
               this.exist_Email = true
+              console.log(result)
             }
 
           })
@@ -92,17 +96,21 @@ export default {
         let search =`?Token=${token}`
         let user_data = this.fetch__methode(this.params,search)
         user_data.then((result) =>{
-          if(result.data.length == 1)
+          if(result.data == "valide token")
           {
+            localStorage.setItem('jwt', result.JWT)
+            console.log(result.JWT)
+            this.$router.push('/profile')
             this.token_invalide = false
-            console.log(result)
           }
           else{
             this.token_invalide = true
+
           }
         })
-      }
+      },
     }
+
 }
 </script>
 

@@ -1,4 +1,11 @@
 <?php
+
+
+require "../../vendor/autoload.php";
+
+use Firebase\JWT\JWT;
+
+
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
@@ -52,12 +59,47 @@ function Use__Api($contentType,$method,$params){
     $response = [
         'value' => 0,
         'error' => 'All good',
+        'JWT' => "",
         'data' => null,
     ];
     if($contentType ==='application/json'){
             if($method === "get"){
                 $data = $get_Api->$method($params,$get_Db);
-                $response['data'] = Data($data);
+                $url = parse_url($_SERVER['REQUEST_URI']);
+                if(isset($url['query'])){
+                    $params =  explode("=",$url['query']);
+                    if($params[0] == "Email"){
+                        count($data) > 0 ? $response['data'] = "exist email" : $response['data'] = "email valide";
+                    }
+                    elseif($params[0] == "Token"){
+                        if(count($data) === 1){
+                            $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew='; // bitch dont try to copy this cuz i will change this jwt secretkey
+                            $issuedAt   = new DateTimeImmutable();
+                            $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
+                            $serverName = "Fical.com";
+                            $ID  = $data[0]["ID"]; 
+                            $data_jwt = [
+                                'iat'  => $issuedAt->getTimestamp(),         // Issued at: time when the token was generated
+                                'iss'  => $serverName,                       // Issuer
+                                'nbf'  => $issuedAt->getTimestamp(),         // Not before
+                                'exp'  => $expire,                           // Expire
+                                'ID' => $ID,                     //ID
+                            ];
+                            $jwt = JWT::encode($data_jwt, $secretKey , "HS512");    
+                            $response['JWT'] = $jwt;
+                            $response['data'] = "valide token";
+                        }
+                        else{
+                            $response['data'] = "invalide token";
+                        }
+                    }
+                    else{
+                        $response['data'] = $data;
+                    }
+                }
+                else{
+                    $response['data'] = $data;
+                }
             }
             else{
                 $RG__valide = $check_regix->check($params);
@@ -66,6 +108,7 @@ function Use__Api($contentType,$method,$params){
                         $token_user =  uniqid();
                         $params['Token'] = $token_user ;
                         $response['Token'] = $token_user;
+                        $response['value'] = 1;
                     }
                     $data = $get_Api->$method($params,$get_Db);
                 }
@@ -73,8 +116,6 @@ function Use__Api($contentType,$method,$params){
                     $response['error'] = "Invalide Regix";
                 }
             }
-            $response['value'] = 1;
-
     }
     else{
         $response['error'] = "Content is not Json Data";
