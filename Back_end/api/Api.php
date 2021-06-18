@@ -20,7 +20,12 @@ class API{
             $params =  explode("=",$url['query']);
             $condition =[$params[0] =>  $params[1]];
             $resultat = $get_Db->select("" ,$condition);
-        }else{
+        }
+        elseif(isset($para['ID'])){
+            $condition=['ID' => $para['ID']];
+            $resultat = $get_Db->select("" ,$condition);
+        }
+        else{
             $resultat = $get_Db->select();
         }
             return $resultat;
@@ -83,9 +88,10 @@ function Use__Api($contentType,$method,$params){
                                 'iss'  => $serverName,                       // Issuer
                                 'nbf'  => $issuedAt->getTimestamp(),         // Not before
                                 'exp'  => $expire,                           // Expire
-                                'ID' => $ID,                     //ID
+                                'ID' => $ID,      
+                                'Status' => "user__is__login"               //ID
                             ];
-                            $jwt = JWT::encode($data_jwt, $secretKey , "HS512");    
+                            $jwt = JWT::encode($data_jwt, $secretKey , "HS256");     /// if u want to decode this token dont forgot to add this the some this parametrs 
                             $response['JWT'] = $jwt;
                             $response['data'] = "valide token";
                         }
@@ -101,20 +107,38 @@ function Use__Api($contentType,$method,$params){
                     $response['data'] = $data;
                 }
             }
-            else{
-                $RG__valide = $check_regix->check($params);
-                if($RG__valide){
-                    if($method === "post"){
+            elseif($method === "post"){
+                if(isset($params['jwt'])){
+                    //// if we get jwt we need to decode this jwt and fetch data agai, with DI and return this data to profile page;
+                    $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew='; 
+                    try { 
+                        $usertoken_to_verify = $params['jwt']; 
+                        $decodejwt = JWT::decode($usertoken_to_verify, $secretKey, array('HS256'));
+                       $user_ID = $decodejwt->ID;
+
+                        $data = $get_Api->get(['ID' => $user_ID],$get_Db);
+                        $response['data'] = $data; 
+                      } catch (UnexpectedValueException $e) {
+                        echo $e->getMessage(); 
+                      }
+                }
+                else{
+                    $RG__valide = $check_regix->check($params);
+                    if($RG__valide){
                         $token_user =  uniqid();
                         $params['Token'] = $token_user ;
                         $response['Token'] = $token_user;
                         $response['value'] = 1;
+                        $data = $get_Api->$method($params,$get_Db);
                     }
-                    $data = $get_Api->$method($params,$get_Db);
+                    else{
+                        $response['error'] = "Invalide Regix";
+                    }
                 }
-                else{
-                    $response['error'] = "Invalide Regix";
-                }
+            }
+            else{
+                $data = $get_Api->$method($params,$get_Db);
+
             }
     }
     else{
@@ -127,4 +151,13 @@ $method = strtolower($_SERVER["REQUEST_METHOD"]);
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 $params = json_decode(file_get_contents('php://input'),true);
 Use__Api($contentType,$method,$params);
+
+// $jwt = '';
+
+// try {
+//     JWT::decode($jwt, $secret, array('HS512'));
+// } catch(Exception $e) {
+//     echo json_encode($e->getMessage);
+//     exit();
+// }
 

@@ -31,7 +31,30 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    component: profile
+    component: profile,
+    beforeEnter: (to, from, next) => {
+      async function check__token(params){
+        let rep = await fetch(`http://localhost/Lowyer__booking__v1/back_end/controlles/decodeJwt.php`,params);
+        let reponse = await rep.json();
+        return reponse;
+      }
+      check__token();
+        let have__token = localStorage.getItem('jwt');
+        if (have__token) {
+          var params = {method:"POST",headers:{'Content-type': 'application/json'},body:JSON.stringify({'jwt':have__token})}
+          let token_after_check =  check__token(params);
+          token_after_check.then((res) =>{
+            if(res.token == "valide"){
+                next()
+            }
+            else{
+              next('/')
+            }
+          })
+      } else {
+        next('/')
+      }
+    }
   }
 ]
 

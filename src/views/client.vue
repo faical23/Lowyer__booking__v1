@@ -16,7 +16,7 @@
 
 <script>
 
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 
 export default {
@@ -43,18 +43,17 @@ export default {
         return reponse;
       },
       get__user__data: function(){
-        var decoded = jwt_decode(this.jwt);
-        this.ID = decoded.ID
-        let search = `?ID=${this.ID}`
-        let user_data = this.fetch__methode(search,this.params);
+        console.log(this.jwt)
+        var params = {method:"POST",headers:{'Content-type': 'application/json'},body:JSON.stringify({'jwt':this.jwt})}
+        let user_data = this.fetch__methode("",params);
         user_data.then((res)=>{
           console.log(res)
-          this.Fname = res.data[0].Fname
-          this.Lname = res.data[0].Lname
-          this.Email = res.data[0].Email
-          this.PhoneNumber= res.data[0].PhoneNumber
-          this.Token = res.data[0].Token
-          })
+            this.Fname = res.data[0].Fname
+            this.Lname = res.data[0].Lname
+            this.Email = res.data[0].Email
+            this.PhoneNumber= res.data[0].PhoneNumber
+            this.Token = res.data[0].Token
+        })
         },
         logout:function(){
           localStorage.removeItem('jwt');
