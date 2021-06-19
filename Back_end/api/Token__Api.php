@@ -10,41 +10,10 @@ header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
-include '../model/db.php';
+include 'methodes.php';
 include '../controlles/regix.php';
 
-class API{
-    public function get($para,$get_Db){
-        $url = parse_url($_SERVER['REQUEST_URI']);
-        if(isset($url['query'])){
-            $params =  explode("=",$url['query']);
-            $condition =[$params[0] =>  $params[1]];
-            $resultat = $get_Db->select("" ,$condition);
-        }
-        elseif(isset($para['ID'])){
-            $condition=['ID' => $para['ID']];
-            $resultat = $get_Db->select("" ,$condition);
-        }
-        else{
-            $resultat = $get_Db->select();
-        }
-            return $resultat;
-    } 
-    public function post($para,$get_Db){
 
-        $get_Db->insert($para);
-    }
-    public function delete($para,$get_Db){
-        reset($para);
-        $first_key = key($para); 
-        $where_id =$first_key;
-        $condition = $para[$first_key];
-        $get_Db->delete($where_id , $condition);
-    }
-    public function put($para,$get_Db){
-        $get_Db-> update($para,"Token",$para['Token']);
-    }
-}
 function Data($res){
     $arr_post['users'] = array();
     foreach($res  as $value){
@@ -80,7 +49,7 @@ function Use__Api($contentType,$method,$params){
                         if(count($data) === 1){
                             $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew='; // dont try to copy this cuz i will change this jwt secretkey
                             $issuedAt   = new DateTimeImmutable();
-                            $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
+                            $expire     = $issuedAt->modify('+60 minutes')->getTimestamp();      // Add 60 seconds
                             $serverName = "Fical.com";
                             $ID  = $data[0]["ID"]; 
                             $data_jwt = [
@@ -129,7 +98,8 @@ function Use__Api($contentType,$method,$params){
                         $params['Token'] = $token_user . $params['Lname'];
                         $response['Token'] = $token_user. $params['Lname'];
                         $response['value'] = 1;
-                        $data = $get_Api->$method($params,$get_Db);
+                        $condition = ['Token' ,$params['Token']];
+                        $data = $get_Api->$method($params,$get_Db,$condition);
                     }
                     else{
                         $response['error'] = "Invalide Regix";

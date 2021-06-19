@@ -57,7 +57,7 @@ export default {
     methods:{
 
       fetch__methode : async function (params,search){
-          let rep = await fetch(`http://localhost/Lowyer__booking__v1/back_end/api/Api.php${search}` , params);
+          let rep = await fetch(`http://localhost/Lowyer__booking__v1/back_end/api/Token__Api.php${search}` , params);
           let reponse = await rep.json();
           return reponse;
       },

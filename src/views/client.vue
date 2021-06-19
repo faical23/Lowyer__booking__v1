@@ -19,11 +19,11 @@
           <th>Status</th>
           <th  >Action</th>
         </tr>
-        <tr>
-          <td class="first__td_child">18/09/2022</td>
-          <td>10:00 </td>
-          <td>10:30</td>
-          <td >dazt</td>
+        <tr v-for="histo in historique" :key="histo"> 
+          <td class="first__td_child">{{histo.day}}</td>
+          <td>{{histo.time_start}}</td>
+          <td>{{histo.time_end}}</td>
+          <td v-if="status">{{histo.status}}</td>
           <td class="last__td_child">
             <button>Delete</button>
           </td>
@@ -51,7 +51,8 @@ export default {
       Token:"",
       ID:"",
       params : {method:"GET",headers:{'Content-type': 'application/json'}},
-      selectedDate: null,
+      historique:'',
+      status:true,   
 
 
     }
@@ -59,15 +60,16 @@ export default {
   components: {
     },
   methods:{
-    fetch__methode : async function (search,params){
-        let rep = await fetch(`http://localhost/Lowyer__booking__v1/back_end/api/Api.php${search}` , params);
+    fetch__methode : async function (search,params,Api){
+        let rep = await fetch(`${Api + search}` , params);
         let reponse = await rep.json();
         return reponse;
       },
       get__user__data: function(){
         console.log(this.jwt)
+        let Api = "http://localhost/Lowyer__booking__v1/back_end/api/Token__Api.php";
         var params = {method:"POST",headers:{'Content-type': 'application/json'},body:JSON.stringify({'jwt':this.jwt})}
-        let user_data = this.fetch__methode("",params);
+        let user_data = this.fetch__methode("",params,Api);
         user_data.then((res)=>{
           console.log(res)
             this.Fname = res.data[0].Fname
@@ -75,10 +77,30 @@ export default {
             this.Email = res.data[0].Email
             this.PhoneNumber= res.data[0].PhoneNumber
             this.Token = res.data[0].Token
+            this.get_historique_book(this.Token)
         })
         },
-      get_historique_book: function(){
-        
+      get_historique_book: function(Token){
+        let Api = "http://localhost/Lowyer__booking__v1/back_end/api/historique__Api.php";
+        let search = `?Token=${Token}`
+        let historique__book = this.fetch__methode(search,this.params,Api);
+        historique__book.then((res)=>{
+          this.historique=res.data
+          console.log(res)
+          // var date_from_DB = res.data[3].day;
+          // var split__date = date_from_DB.split('/');
+          // var date = new Date (split__date [2], split__date [1] - 1,split__date [0]); //using a[1]-1 since Date object has month from 0-11
+          // var Today = new Date();
+          // if(date < Today){
+          //   // this.status = true
+          //   console.log("dazt");
+          // }
+          // else{
+          //   // this.status = false
+          //   console.log("mzl madaazt")
+          // }
+
+        })
       }
         ,
         logout:function(){
