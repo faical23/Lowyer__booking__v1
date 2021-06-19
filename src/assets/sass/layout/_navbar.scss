@@ -62,86 +62,18 @@
             display: none;
         }
         .navbar__book{
+            width: 50%;
+            text-align: end;
             button{
                 font-size: 15px;
                 padding: 9px 40px;
             }
         }
+        .navbar__logo{
+            width: 50%;
+            text-align: start;
+        }
     }
     
 }
-.home{
-    z-index: 1000;
-    position: relative;
-    @include flex(space-between,center);
-    .home__content{
-        width: 50%;
-        text-align: start;
-        h1{
-            font-size: $primary-bold;
-            line-height: 70px;
-        }
 
-        p{
-            font-family: $primary-regular;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 30px;
-            padding-top: 30px;
-        }
-            button {
-                margin-top: 30px;
-                font-family: $primary-light;
-                font-size: 16px;
-                transition: 0.5s ease-in-out;
-                font-weight: 300;
-                border-radius: 25px;
-                padding: 8px 45px;
-                cursor: pointer;
-                background-color: $primary-100;
-                color: $white;
-                &:hover {
-                    background-color: $white;
-                    color: $primary-100;
-                    border: 1px solid $primary-100;
-                }
-            } 
-    }  
-    .home__illustration{
-        width: 50%;
-        text-align: end;
-        img{
-            width: 90%;
-        }
-    }
-}
-
-.footer{
-    text-align: center;
-    .sociel-media .fa {
-        padding: 12px 0px;
-        font-size: 24px;
-        width: 50px;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 100%;
-        margin:0px 10px;
-      }
-      .fa:hover {
-        opacity: 0.7;
-      }
-      .fa-facebook,.fa-instagram,.fa-twitter{
-        color: white;
-      }
-    
-      .fa-facebook {
-        background: #3B5998;
-      }
-      .fa-twitter {
-        background: #55ACEE;
-      }
-      .fa-instagram {
-        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); 
-      }
-}

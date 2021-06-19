@@ -24,25 +24,30 @@ export default {
 <style lang="scss">
   @import 'assets/css/style.css';
   .test{
+     width: 600px;
     z-index: 0;
-    
-    width: 600px;
-    height: 600px;
     position: absolute;
     left: 0;
     top: -50px;
+        @media only screen and (max-width: 768px) {
+          width: 400px;
+          left: -100px;
+    }
+      @media only screen and (max-width: 560px) {
+          width: 350px;
+    }
   }
-  // .test_2{
-  //   z-index: 100000;
+  .test_2{
+    z-index: 1000;
     
-  //   width: 400px;
-  //   height: 400px;
-  //   position: absolute;
-  //   right: 0;
-  //   bottom: 0px;
-  // }
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    transform: translate(120%, 30%);
+  }
   body{
-    // background: #a0f2f5;
     height: 100vh;
 }
   #app{

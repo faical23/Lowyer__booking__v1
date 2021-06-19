@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Inscription v-if="click_book" ></Inscription>
     <div class="home__content">
         <h1 class="f">The right lawyer</h1>
         <h1> makes all differnce</h1>
@@ -9,7 +10,6 @@
     <div class="home__illustration">
         <img src="../assets/img/female_lowyer.jpg">
     </div>
-        <Inscription v-if="click_book"></Inscription>
   </div>
   <div class="footer">
     <section class="sociel-media">
@@ -30,7 +30,7 @@ export default {
   name: 'Home',
   data(){
     return{
-      click_book :false
+      click_book :false,
     }
   },
   components: {

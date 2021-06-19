@@ -1,22 +1,29 @@
 <template>
-    <div class="Inscription">
-        <h1>Inscription</h1>
-        <form action="" v-if="have__token || get__token">
-            <p v-if="get__token"> ur token is : {{Token}}</p>
+    <div class="Inscription" v-if=" back">
+        <form action="" v-if="(have__token || get__token)">
+            <h3>welcome </h3>
+            <p v-if="get__token" class="your__token" > ur token is : {{Token}}</p>
             <input type="text" placeholder="token" v-model="input_token">
-            <p v-if="token_invalide">Token invalide please try again</p>
-            <button  @click.prevent @click="valide__token" >Valide</button>
-            <button @click="have__token = false" v-if="get__token != true">i don't have token</button>
+            <p v-if="token_invalide" class="error__form">Token invalide please try again</p>
+            <button class="btn__form" @click.prevent @click="valide__token" >Valide</button>
+            <button class="button_token_dont_have"  @click="have__token = false , error_field = false" v-if="get__token != true">i don't have token</button>
+            <button class="row__back" @click.prevent @click=" back= false">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><rect fill="none" height="24" width="24"/><path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z"/></svg>
+            </button>
         </form>
         <form action="" v-else>
-            <input type="text" placeholder="First Name" v-model="Fname">
+             <h3>Get token</h3>
+             <input type="text" placeholder="First Name" v-model="Fname">
             <input type="text" placeholder="Last Name"  v-model="Lname">
             <input type="text" placeholder="Email" v-model="Email">
              <input type="text" placeholder="Phone Number" v-model="PhoneNumber">
-            <button  @click.prevent @click="submit__data">Sign up</button>
-            <button @click="have__token = true">i have token</button>
-            <p v-if="error_field">Error in some field</p>
-            <p v-if="exist_Email">Email exist</p>
+              <p v-if="error_field" class="error__form">Error in some field</p>
+            <p v-if="exist_Email" class="error__form">Email exist</p>
+            <button class="btn__form"  @click.prevent @click="submit__data(),token_invalide = false">Sign up</button>
+            <button class="button_token_dont_have"  @click="have__token = true , token_invalide = false">i have token</button>
+            <button class="row__back" @click.prevent @click=" back= false">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><rect fill="none" height="24" width="24"/><path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z"/></svg>
+            </button>
         </form>
 
     </div>
@@ -42,8 +49,7 @@ export default {
             input_token:"",
             params : {method:"GET",headers:{'Content-type': 'application/json'}},
             token_invalide : false,
-            msg:"test msg"
-
+            back:true
         }
     },
     components:{
