@@ -78,7 +78,7 @@ function Use__Api($contentType,$method,$params){
                     }
                     elseif($params[0] == "Token"){
                         if(count($data) === 1){
-                            $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew='; // bitch dont try to copy this cuz i will change this jwt secretkey
+                            $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew='; // dont try to copy this cuz i will change this jwt secretkey
                             $issuedAt   = new DateTimeImmutable();
                             $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
                             $serverName = "Fical.com";
@@ -125,9 +125,9 @@ function Use__Api($contentType,$method,$params){
                 else{
                     $RG__valide = $check_regix->check($params);
                     if($RG__valide){
-                        $token_user =  uniqid();
-                        $params['Token'] = $token_user ;
-                        $response['Token'] = $token_user;
+                        $token_user =  uniqid() . "";
+                        $params['Token'] = $token_user . $params['Lname'];
+                        $response['Token'] = $token_user. $params['Lname'];
                         $response['value'] = 1;
                         $data = $get_Api->$method($params,$get_Db);
                     }
@@ -151,13 +151,4 @@ $method = strtolower($_SERVER["REQUEST_METHOD"]);
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 $params = json_decode(file_get_contents('php://input'),true);
 Use__Api($contentType,$method,$params);
-
-// $jwt = '';
-
-// try {
-//     JWT::decode($jwt, $secret, array('HS512'));
-// } catch(Exception $e) {
-//     echo json_encode($e->getMessage);
-//     exit();
-// }
 

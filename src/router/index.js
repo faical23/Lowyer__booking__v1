@@ -7,9 +7,10 @@ import profile from '../views/client.vue'
 
 
 const routes = [
+
   {
     path: '/',
-    name: 'Home',
+    redirect: '/home',
     component: Home
   },
   {

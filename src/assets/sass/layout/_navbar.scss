@@ -1,14 +1,147 @@
 .navbar{
-    display: flex;
-    justify-content: center;
-    background-color: crimson;
-    padding: 30px 0px !important;
-    a{
-        color: white;
-        font-size: 20px;
-        padding: 0px 40px;
-        &:hover{
-            color:rgb(39, 85, 236) ;
+    z-index: 2000;
+    position: relative;
+    padding: 30px 0px;
+    @include flex(space-between,center);
+    .navbar__logo{
+        width: 20%;
+        text-align: center;
+        h1{
+            font-family: $primary-light;
+            font-family: 'countryside';
+            font-size: 30px;
+            font-weight: bolder !important;
+            cursor: pointer;
+            color: white
         }
     }
+    .navbar__menu{
+        width: 100%;
+        @include flex(center,center);
+        a {
+            display: block;
+            font-family: $primary-light;
+            font-size: 17px;
+            transition: 0.3s ease-in-out;
+            font-weight: 600;
+            color: $black;
+            padding: 0px 25px;
+            &:hover{
+                color:$primary-100 ;
+            }
+        }
+    }
+    .navbar__book{
+        width: 20%;
+            button {
+                font-family: $primary-light;
+                font-size: 16px;
+                transition: 0.5s ease-in-out;
+                font-weight: 300;
+                border-radius: 25px;
+                padding: 8px 45px;
+                cursor: pointer;
+                background-color: $primary-100;
+                color: $white;
+                &:hover {
+                    background-color: $white;
+                    color: $primary-100;
+                    border: 1px solid $primary-100;
+                }
+            }    
+    }
+    @media only screen and (max-width: 768px) {
+        .navbar__menu{
+            a {
+                padding: 0px 10px;
+            }
+        }
+    }
+    @media only screen and (max-width: 560px) {
+        .navbar__menu{
+            display: none;
+        }
+        .navbar__book{
+            button{
+                font-size: 15px;
+                padding: 9px 40px;
+            }
+        }
+    }
+    
+}
+.home{
+    z-index: 1000;
+    position: relative;
+    @include flex(space-between,center);
+    .home__content{
+        width: 50%;
+        text-align: start;
+        h1{
+            font-size: $primary-bold;
+            line-height: 70px;
+        }
+
+        p{
+            font-family: $primary-regular;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 30px;
+            padding-top: 30px;
+        }
+            button {
+                margin-top: 30px;
+                font-family: $primary-light;
+                font-size: 16px;
+                transition: 0.5s ease-in-out;
+                font-weight: 300;
+                border-radius: 25px;
+                padding: 8px 45px;
+                cursor: pointer;
+                background-color: $primary-100;
+                color: $white;
+                &:hover {
+                    background-color: $white;
+                    color: $primary-100;
+                    border: 1px solid $primary-100;
+                }
+            } 
+    }  
+    .home__illustration{
+        width: 50%;
+        text-align: end;
+        img{
+            width: 90%;
+        }
+    }
+}
+
+.footer{
+    text-align: center;
+    .sociel-media .fa {
+        padding: 12px 0px;
+        font-size: 24px;
+        width: 50px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 100%;
+        margin:0px 10px;
+      }
+      .fa:hover {
+        opacity: 0.7;
+      }
+      .fa-facebook,.fa-instagram,.fa-twitter{
+        color: white;
+      }
+    
+      .fa-facebook {
+        background: #3B5998;
+      }
+      .fa-twitter {
+        background: #55ACEE;
+      }
+      .fa-instagram {
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); 
+      }
 }

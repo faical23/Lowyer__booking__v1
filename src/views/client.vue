@@ -7,7 +7,10 @@
         <p>Email : {{Email}}</p>
         <p>Phone number : {{PhoneNumber}}</p>
         <p>Token : {{Token}}</p>
-
+    </div>
+    <div class="add__book">
+      <button>Add book</button>
+       <div id="calendar"></div>
 
     </div>
     <button @click="logout">logout</button>
@@ -15,14 +18,27 @@
 </template>
 
 <script>
+// import VCalendar from 'v-calendar'
+// import Vue from '../../node_modules/vue';
 
-// import jwt_decode from "jwt-decode";
+// import Calendar from 'v-calendar/lib/components/calendar.umd'
+// import DatePicker from 'v-calendar/lib/components/date-picker.umd'
+
+// Vue.use(VCalendar, {
+//     componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
+//               // ...other defaults
+// });
+// // Register components in your 'main.js'
+// Vue.component('calendar', Calendar)
+// Vue.component('date-picker', DatePicker)
 
 
 export default {
-  name: 'Home',
+
+
   data(){
     return{
+      name: 'Home',
       jwt :localStorage.getItem('jwt'),
       Fname :"",
       Lname:"",
@@ -31,6 +47,8 @@ export default {
       Token:"",
       ID:"",
       params : {method:"GET",headers:{'Content-type': 'application/json'}},
+      selectedDate: null,
+
 
     }
   },
