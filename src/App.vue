@@ -1,13 +1,14 @@
 <template>
 
   <div id="nav">
-    <Myheader></Myheader>
+    <Myheader/>
   </div>
   <router-view/>
 </template>
 
 <script>
 import Myheader from './components/header.vue'
+
 
 export default {
   
@@ -17,7 +18,7 @@ export default {
         }
     },
     components:{
-     Myheader
+     Myheader,
     }
 }
 </script>

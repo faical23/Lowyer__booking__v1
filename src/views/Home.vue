@@ -11,18 +11,13 @@
         <img src="../assets/img/female_lowyer.jpg">
     </div>
   </div>
-  <div class="footer">
-    <section class="sociel-media">
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-twitter"></a>
-        <a href="#" class="fa fa-instagram"></a>
-    </section>
-  </div>
+  <Myfooter/>
 </template>
 
 <script>
 
 import Inscription from '../components/Inscription.vue'
+import Myfooter from '../components/footer.vue'
 
 
 
@@ -34,7 +29,9 @@ export default {
     }
   },
   components: {
-    Inscription
+    Inscription,
+        Myfooter
+
     },
   methods:{
     booking:function(){
