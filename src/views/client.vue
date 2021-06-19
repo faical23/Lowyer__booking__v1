@@ -13,6 +13,7 @@
       <h3>Historique</h3>
       <table>
         <tr class="table__header">
+          <th>ID</th>
           <th  >Date</th>
           <th>Time start</th>
           <th>Time end</th>
@@ -20,12 +21,13 @@
           <th  >Action</th>
         </tr>
         <tr v-for="histo in historique" :key="histo"> 
+          <td>{{histo.ID}}</td>
           <td class="first__td_child">{{histo.day}}</td>
           <td>{{histo.time_start}}</td>
           <td>{{histo.time_end}}</td>
-          <td v-if="status">{{histo.status}}</td>
-          <td class="last__td_child">
-            <button>Delete</button>
+          <td >{{histo.status}}</td>
+          <td >
+            <button :disabled="histo.status != 'avaible'"  :class="[histo.status != 'avaible' ? 'expired_btn' : '']" @click="delete_book(histo.ID)">Delete</button>
           </td>
         </tr>
       </table>
@@ -52,7 +54,6 @@ export default {
       ID:"",
       params : {method:"GET",headers:{'Content-type': 'application/json'}},
       historique:'',
-      status:true,   
 
 
     }
@@ -87,25 +88,23 @@ export default {
         historique__book.then((res)=>{
           this.historique=res.data
           console.log(res)
-          // var date_from_DB = res.data[3].day;
-          // var split__date = date_from_DB.split('/');
-          // var date = new Date (split__date [2], split__date [1] - 1,split__date [0]); //using a[1]-1 since Date object has month from 0-11
-          // var Today = new Date();
-          // if(date < Today){
-          //   // this.status = true
-          //   console.log("dazt");
-          // }
-          // else{
-          //   // this.status = false
-          //   console.log("mzl madaazt")
-          // }
-
         })
-      }
-        ,
+      },
         logout:function(){
           localStorage.removeItem('jwt');
           this.$router.push('/home')
+      },
+      delete_book: function(ID){
+          let Api = "http://localhost/Lowyer__booking__v1/back_end/api/historique__Api.php";
+          console.log(ID)
+          let data=JSON.stringify({'ID' : ID})
+          let params = {method:"DELETE",headers:{'Content-type': 'application/json'},body:data}
+          let res_delete = this.fetch__methode("",params,Api)
+          res_delete.then((res) =>{
+            console.log(res);
+            this.get_historique_book(this.Token);
+
+          })
         }
     },
     mounted() {

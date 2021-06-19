@@ -79,6 +79,14 @@
                 border: 1px solid $primary-100;
             }
         } 
+        .expired_btn{
+            background-color: red !important;
+            cursor: no-drop;
+            &:hover{
+                border: none;
+                color: white;
+            }
+        }
 
 
     }

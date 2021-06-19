@@ -12,9 +12,12 @@ include '../controlles/regix.php';
 
 
 function Data($res){
+
     $arr_post['historique'] = array();
     foreach($res  as $value){
-    $article = array("Topic" => $value['Topic'],
+    $article = array(
+                "ID" => $value['ID'],
+                "Topic" => $value['Topic'],
                 "Day" => $value['Day'],
                 "time_start" => $value['time_start'],
                 "time_end" => $value['time_end'],
@@ -25,6 +28,11 @@ function Data($res){
 }
 
 function historique__Api($contentType,$method,$params){
+    $response = [
+        'value' => 0,
+        'error' => 'All good',
+        'data' => null,
+    ];
     $get_Db = new CRUD("booking");
     $check_regix = new REGIX($params);
     $get_Api = new API();
@@ -32,8 +40,6 @@ function historique__Api($contentType,$method,$params){
     if($contentType ==='application/json'){
         if($method === "get"){
             $data = $get_Api->$method($params,$get_Db);
-            
-
             //// coparaisone between the today date and book date
             //// if he is expired we make a requet to change status from avaible to expired
             foreach($data as $user){
@@ -43,7 +49,12 @@ function historique__Api($contentType,$method,$params){
                 $time1 = strtotime($date_book);
                 $time2 = strtotime($date_today);
                 if($time1 < $time2){
+                    $condition = ['ID' => $user['ID']];
                     $params=["status" => "Expired"];
+                    $get_Api->put($params,$get_Db,$condition);
+                }
+                else{
+                    $params=["status" => "avaible"];
                     $condition = ['ID' => $user['ID']];
                     $get_Api->put($params,$get_Db,$condition);
                 }
@@ -51,7 +62,9 @@ function historique__Api($contentType,$method,$params){
             $response['data'] = $data;
         }
         else{
-            $response['data'] = "null";
+            $data = $get_Api->$method($params,$get_Db);
+            $response['data'] = "delete data";
+
         }
         echo json_encode($response);
 
