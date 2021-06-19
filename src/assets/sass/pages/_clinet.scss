@@ -1,0 +1,144 @@
+.client{
+    position: relative;
+    @include flex(space-between,flex-start);
+    .user_data{
+        padding: 50px 50px;
+        border-radius: 20px;
+        box-shadow: 0px 0px 5px 0px black;
+        width: 30%;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.5s ease-in-out;
+        margin-bottom: 30px;
+        &:hover{
+            background-color: $primary-100;
+        }
+        &:hover span {
+            color: $white;
+        }
+        &:hover button {
+            color: $white;
+            background-color: $white;
+            color: $primary-100;
+        }
+        img{
+            width: 60%;
+            margin-bottom: 20px;
+        }
+        p{
+            padding: 5px 0px;
+
+        }
+        span{
+            color: $primary-100;
+            transition: 0.5s ease-in-out;
+
+        }
+        button {
+            font-family: $primary-light;
+            font-size: 16px;
+            transition: 0.5s ease-in-out;
+            font-weight: 300;
+            border-radius: 25px;
+            padding: 8px 45px;
+            cursor: pointer;
+            background-color: $primary-100;
+            color: $white;
+            margin-top: 20px;
+            &:hover {
+                background-color: $white;
+                color: $primary-100;
+                border: 1px solid $primary-100;
+            }
+        } 
+    }
+    .historique__resereve{
+        text-align: start;
+        width: 55%;
+        position: relative;
+        top: 60px;
+        h3{
+            padding-bottom:12px ;
+            width: 14%;
+            border-bottom: 5px solid $primary-100;
+        }
+        button {
+            font-family: $primary-light;
+            font-size: 16px;
+            transition: 0.5s ease-in-out;
+            font-weight: 300;
+            border-radius: 25px;
+            padding: 10px 50px;
+            cursor: pointer;
+            background-color: $primary-100;
+            color: $white;
+            margin-top: 20px;
+            &:hover {
+                background-color: $white;
+                color: $primary-100;
+                border: 1px solid $primary-100;
+            }
+        } 
+
+
+    }
+}
+
+table{
+    border: none;
+    border-collapse: collapse;
+    padding: 0;
+    border-left: none;
+    border-right: none;
+    font-family: $primary-medium;   
+    margin-top: 50px;
+    tr{
+        text-align: center;
+        font-size: 1rem;
+    }
+    .table__header{
+        border: none;
+        th{
+            padding: 15px 10px;  
+            color: $primary-100;
+        }
+
+    }
+    td{
+        color: $primary-100;
+        padding: 0px 40px;  
+        text-align: center;
+        border: 1px solid black;
+
+
+    }
+    .first__td_child{
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    .last__td_child{
+        border-top-right-radius: 25px;
+        border-bottom-right-radius:25px;
+    }
+
+    button {
+        position: relative;
+        bottom: 9px;
+        font-family: $primary-light;
+        font-size: 16px;
+        transition: 0.5s ease-in-out;
+        font-weight: 300;
+        border-radius: 25px;
+        padding: 5px 25px !important;
+        cursor: pointer;
+        background-color: $primary-100;
+        color: $white;
+        margin-top: 20px;
+        &:hover {
+            background-color: $white;
+            color: $primary-100;
+            border: 1px solid $primary-100;
+        }
+    } 
+
+}

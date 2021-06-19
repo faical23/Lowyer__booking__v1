@@ -1,36 +1,40 @@
 <template>
-  <div class="home">
-    <h1>this is user profile</h1>
+  <div class="client">
     <div class="user_data">
-        <p>First name : {{Fname}}</p>
-        <p>Last name : {{Lname}}</p>
-        <p>Email : {{Email}}</p>
-        <p>Phone number : {{PhoneNumber}}</p>
-        <p>Token : {{Token}}</p>
+        <img src="../assets/img/avatar.png">
+        <p> First name : <span>{{Fname}}</span> </p>
+        <p>Last name :  <span>{{Lname}}</span> </p>
+        <p>Email : <span>{{Email}}</span> </p>
+        <p>Phone number :  <span>{{PhoneNumber}}</span> </p>
+        <p>Token :  <span>{{Token}}</span> </p>
+        <button @click="logout">logout</button>
     </div>
-    <div class="add__book">
-      <button>Add book</button>
-       <div id="calendar"></div>
-
+    <div class="historique__resereve">
+      <h3>Historique</h3>
+      <table>
+        <tr class="table__header">
+          <th  >Date</th>
+          <th>Time start</th>
+          <th>Time end</th>
+          <th>Status</th>
+          <th  >Action</th>
+        </tr>
+        <tr>
+          <td class="first__td_child">18/09/2022</td>
+          <td>10:00 </td>
+          <td>10:30</td>
+          <td >dazt</td>
+          <td class="last__td_child">
+            <button>Delete</button>
+          </td>
+        </tr>
+      </table>
+      <button @click="addunew__reserve">Add</button>
     </div>
-    <button @click="logout">logout</button>
-  </div>
+    </div>
 </template>
 
 <script>
-// import VCalendar from 'v-calendar'
-// import Vue from '../../node_modules/vue';
-
-// import Calendar from 'v-calendar/lib/components/calendar.umd'
-// import DatePicker from 'v-calendar/lib/components/date-picker.umd'
-
-// Vue.use(VCalendar, {
-//     componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
-//               // ...other defaults
-// });
-// // Register components in your 'main.js'
-// Vue.component('calendar', Calendar)
-// Vue.component('date-picker', DatePicker)
 
 
 export default {
@@ -73,6 +77,10 @@ export default {
             this.Token = res.data[0].Token
         })
         },
+      get_historique_book: function(){
+        
+      }
+        ,
         logout:function(){
           localStorage.removeItem('jwt');
           this.$router.push('/home')
