@@ -75,7 +75,13 @@
             </button>
         </div>
         <div  v-show="click_time" class="calender_valide">
-            <h4>ur topic</h4>
+            <p>token : {{Token}}</p>
+            <h4>write your subject her</h4>
+            <textarea type="text" placeholder="Sujet" v-model="sujet"></textarea>
+            <button @click="valide__reserve">Valide</button>
+            <button class="row__back" @click.prevent @click="click_time = false , date_choose = false">
+                <svg class="back_arrow"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
         </div>
     </div>
 
@@ -93,10 +99,18 @@ export default {
       book_date_calendar : "",
       date_choose:true,
       time_start:"",
-      time_end:""
+      time_end:"",
+      sujet:"",
+      status:"avaible"
     }
   },
+  props:['Token'],
   methods:{
+    fetch__methode : async function (search,params,Api){
+        let rep = await fetch(`${Api + search}` , params);
+        let reponse = await rep.json();
+        return reponse;
+    },
     calender:function(){
                 let calendar = document.querySelector('.calendar')
 
@@ -199,14 +213,12 @@ export default {
                             var day__book = b.replace('\n' , '')
                             let month = document.querySelector('.month-picker')
                             let year = document.querySelector('#year')
-                            let month_index = {'January' : 1 , 'February' : 2 , 'March' :3 , 'April' : 4, 'May' :5,
-                            'June' : 6, 'July' : 7, 'August' : 8, 'September' : 9 , 'October' : 10, 'November' : 11, 'December' : 12}
+                            let month_index = {'January' : "01" , 'February' : "02" , 'March' : "03" , 'April' : "04", 'May' : "05",
+                            'June' : "06", 'July' : "07", 'August' : "08", 'September' : "09" , 'October' : "10" , 'November' : "11" , 'December' : "12"}
                             let month_book = month_index[month.innerHTML]
                             let year__book = year.innerHTML
-                            let date_book = day__book + '\\'  + month_book  +  '\\' + year__book
+                            let date_book =  month_book + '/' + day__book  +  '/' + year__book
                             this.book_date_calendar =  date_book
-
-                            this.choode__time();
                         })
                     })
     },
@@ -214,9 +226,26 @@ export default {
         this.time_start = time_start
         this.time_end = time_end
     },
-    choode__time:function () {
-        console.log(this.book_date_calendar);
+    valide__reserve:function(){
+        let Api = "http://localhost/Lowyer__booking__v1/back_end/api/book__Api.php";
+        const data = JSON.stringify({
+            "Topic" :this.sujet,
+            "day" :this.book_date_calendar,
+            "time_start":this.time_start,
+            "time_end" :this.time_end,
+            "status" :this.status,
+            "Token" :this.Token
+        })
+        const params = {method:"POST",headers:{'Content-type': 'application/json'},body:data}
+        let valide_insert = this.fetch__methode("",params,Api)
+
+        valide_insert.then((res) =>{
+            console.log(res)
+        })
+        console.log(this.book_date_calendar)
+
     }
+
   },
   mounted(){
       this.calender();

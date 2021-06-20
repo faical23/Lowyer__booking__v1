@@ -34,14 +34,13 @@ function historique__Api($contentType,$method,$params){
         'data' => null,
     ];
     $get_Db = new CRUD("booking");
-    $check_regix = new REGIX($params);
     $get_Api = new API();
 
     if($contentType ==='application/json'){
         if($method === "get"){
             $data = $get_Api->$method($params,$get_Db);
-            //// coparaisone between the today date and book date
-            //// if he is expired we make a requet to change status from avaible to expired
+            // coparaisone between the today date and book date
+            // if he is expired we make a requet to change status from avaible to expired
             foreach($data as $user){
                 $date = $user['day'];
                 $date_book = $date;//string variable
@@ -49,6 +48,7 @@ function historique__Api($contentType,$method,$params){
                 $time1 = strtotime($date_book);
                 $time2 = strtotime($date_today);
                 if($time1 < $time2){
+                    
                     $condition = ['ID' => $user['ID']];
                     $params=["status" => "Expired"];
                     $get_Api->put($params,$get_Db,$condition);

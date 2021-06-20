@@ -45,7 +45,7 @@
                             $valide = false;
                         }
                     }  
-                  else if($key == "subject" || $key == "message"|| $key == "reclamation" || $key == "sujet")
+                  else if($key == "subject" || $key == "message"|| $key == "reclamation" || $key == "sujet" || $key == "topic")
                     {
                         if(!preg_match($this->RG_text  , $value))
                         {

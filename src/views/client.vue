@@ -11,7 +11,7 @@
     </div>
     <div class="historique__resereve">
       <h3>Historique</h3>
-    <div v-if="historique > 0">
+    <div v-if="historique.length > 0" class="table_historique">
       <table>
         <tr class="table__header">
           <th>ID</th>
@@ -28,7 +28,7 @@
           <td>{{histo.time_end}}</td>
           <td >{{histo.status}}</td>
           <td >
-            <button :disabled="histo.status != 'avaible'"  :class="[histo.status != 'avaible' ? 'expired_btn' : '']" @click="delete_book(histo.ID)">Delete</button>
+            <button :disabled="histo.status != 'avaible'"  :class="[histo.status != 'avaible' ? 'expired_btn' : 'avaible']" @click="delete_book(histo.ID)">Delete</button>
           </td>
         </tr>
       </table>
@@ -39,7 +39,7 @@
 
       <button @click="new__book = true">Add</button>
       <div v-if="new__book" class="booking_calendar">
-          <calendar></calendar>
+          <calendar :Token="Token"></calendar>
       </div>
     </div>
     </div>
@@ -66,7 +66,6 @@ export default {
       params : {method:"GET",headers:{'Content-type': 'application/json'}},
       historique:'',
       new__book : false
-
 
     }
   },
@@ -97,10 +96,15 @@ export default {
       get_historique_book: function(Token){
         let Api = "http://localhost/Lowyer__booking__v1/back_end/api/historique__Api.php";
         let search = `?Token=${Token}`
-        let historique__book = this.fetch__methode(search,this.params,Api);
-        historique__book.then((res)=>{
+        let historique__book_1= this.fetch__methode(search,this.params,Api);
+        historique__book_1.then((res)=>{
+          console.log(res)
           this.historique=res.data
-          console.log(this.historique.length)
+        })
+        let historique__book_2 = this.fetch__methode(search,this.params,Api);
+        historique__book_2.then((res)=>{
+          console.log(res)
+          this.historique=res.data
         })
       },
         logout:function(){
