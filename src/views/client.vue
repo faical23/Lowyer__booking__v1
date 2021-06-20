@@ -32,11 +32,16 @@
         </tr>
       </table>
       <button @click="addunew__reserve">Add</button>
+      <div class="booking_calendar">
+          <calendar></calendar>
+      </div>
     </div>
     </div>
 </template>
 
 <script>
+
+import calendar from '../components/calendar.vue'
 
 
 export default {
@@ -59,6 +64,7 @@ export default {
     }
   },
   components: {
+    calendar
     },
   methods:{
     fetch__methode : async function (search,params,Api){
