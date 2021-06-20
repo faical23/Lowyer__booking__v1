@@ -46,19 +46,7 @@
     }
     
     
-    .calendar {
-        height: max-content;
-        width: max-content;
-        background-color: var(--bg-main);
-        border-radius: 30px;
-        padding: 20px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0px 0px 10px 1px black;
-        background-color: white;
 
-    
-    }
     
     .light .calendar {
         box-shadow: var(--shadow);
@@ -311,7 +299,23 @@
     }
 
 ////////// im add this code
+position: relative;
+z-index:100000000000;
 
+.calendar {
+    height: max-content;
+    width: max-content;
+    background-color: var(--bg-main);
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px 1px black;
+    background-color: white;
+    width: 130%;
+
+
+}
 
 position: fixed;
 transform: translate(-38%, -70%) !important;
@@ -347,7 +351,7 @@ transform: translate(-38%, -70%) !important;
             background-color: white !important;
         }
     }
-    svg{
+    .switch_years{
         border-radius: 4px;
         background: $primary-100;
         fill: white ;
@@ -376,5 +380,60 @@ transform: translate(-38%, -70%) !important;
         }
 
     }    
+
+    .calendar-time{
+        text-align: start;
+        h4{
+            padding:10px 0px 40px 0px;
+            text-align: center;
+        }
+        padding: 10px 50px;
+        
+        .calendar-time__N{
+            ul{
+                @include flex(space-between,center);
+                .zone_time{
+                    border-radius: 12px;
+                    padding: 16px 14px;
+                    background-color: $primary-100;
+                    color: white;
+                }
+                .btn__zone{
+                    width: 30%;
+                }
+                button{
+                    position: relative;
+                    bottom: 10px;
+                }
+                .btn__book__time{
+                    padding: 8px 45px;
+                }
+                .btn__expired__time{
+                    padding: 8px 30px;
+                    background-color: red;
+                    cursor: no-drop;
+                    &:hover{
+                        background-color: red !important;
+                        color: white;
+                        border: none;
+                    }
+                }
+            }
+
+        }
+        .row__back{
+            padding: 0px;
+            border: none !important;
+            background: none !important;
+            .back_arrow{
+                fill:$primary-100;
+                width: 40px;
+                height: 40px;
+                &:hover{
+                    fill: black;
+                }
+            }
+        }
+    }
     
 }

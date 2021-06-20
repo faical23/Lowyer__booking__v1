@@ -11,6 +11,7 @@
     </div>
     <div class="historique__resereve">
       <h3>Historique</h3>
+    <div v-if="historique > 0">
       <table>
         <tr class="table__header">
           <th>ID</th>
@@ -31,8 +32,13 @@
           </td>
         </tr>
       </table>
-      <button @click="addunew__reserve">Add</button>
-      <div class="booking_calendar">
+    </div>
+    <div v-else>
+        <p class="no__historique">No historique her</p>
+    </div>
+
+      <button @click="new__book = true">Add</button>
+      <div v-if="new__book" class="booking_calendar">
           <calendar></calendar>
       </div>
     </div>
@@ -59,6 +65,7 @@ export default {
       ID:"",
       params : {method:"GET",headers:{'Content-type': 'application/json'}},
       historique:'',
+      new__book : false
 
 
     }
@@ -93,7 +100,7 @@ export default {
         let historique__book = this.fetch__methode(search,this.params,Api);
         historique__book.then((res)=>{
           this.historique=res.data
-          console.log(res)
+          console.log(this.historique.length)
         })
       },
         logout:function(){

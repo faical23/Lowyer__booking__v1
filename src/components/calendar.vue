@@ -1,33 +1,82 @@
 <template>
     <div class="calendar">
-            <p> date : {{book_date_calendar}}</p>
-
-        <div class="calendar-header">
-            <span class="month-picker" id="month-picker"></span>
-            <div class="year-picker">
-                <span class="year-change" id="prev-year">
-                    <pre><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></pre>
-                </span>
-                <span id="year">2021</span>
-                <span class="year-change" id="next-year">
-                    <pre><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></pre>
-                </span>
+        <div v-show="date_choose && click_time == false" class="calender_date">
+                    <div class="calendar-header">
+                <span class="month-picker" id="month-picker"></span>
+                <div class="year-picker">
+                    <span class="year-change" id="prev-year">
+                        <pre><svg class="switch_years" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></pre>
+                    </span>
+                    <span id="year">2021</span>
+                    <span class="year-change" id="next-year">
+                        <pre><svg class="switch_years" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></pre>
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="calendar-body">
-            <div class="calendar-week-day">
-                <div class="weekand">Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div class="weekand">Sat</div>
+            <div class="calendar-body">
+                <div class="calendar-week-day">
+                    <div class="weekand">Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div class="weekand">Sat</div>
+                </div>
+                <div class="calendar-days"></div>
             </div>
-            <div class="calendar-days"></div>
+            <div class="month-list"></div>
         </div>
+        <div v-show="date_choose == false" class="calendar-time">
+                <h4>Choose ur time</h4>
+                <div class="calendar-time__N">
+                    <ul>
+                        <li class="zone_time">10:00 PM</li>
+                        <p>To</p>
+                        <li class="zone_time">10:30 PM</li>
+                        <li class="btn__zone"><button class="btn__book__time" @click="get_time('10:00 PM','10:30 PM'),click_time = true,date_choose = true">Book</button></li>
+                    </ul>
+                </div>
+                <div class="calendar-time__N">
+                    <ul>
+                        <li class="zone_time">10:00 PM</li>
+                        <p>To</p>
+                        <li class="zone_time">10:30 PM</li>
+                        <li class="btn__zone"><button class="btn__book__time">Book</button></li>
+                    </ul>
+                </div>
+                <div class="calendar-time__N">
+                    <ul>
+                        <li class="zone_time">10:00 PM</li>
+                        <p>To</p>
+                        <li class="zone_time">10:30 PM</li>
+                        <li class="btn__zone"><button class="btn__expired__time">Reserved</button></li>
+                    </ul>
+                </div>
+                <div class="calendar-time__N">
+                    <ul>
+                        <li class="zone_time">10:00 PM</li>
+                        <p>To</p>
+                        <li class="zone_time">10:30 PM</li>
+                        <li class="btn__zone"><button class="btn__book__time">Book</button></li>
+                    </ul>
+                </div>
+                <div class="calendar-time__N">
+                    <ul>
+                        <li class="zone_time">10:00 PM</li>
+                        <p>To</p>
+                        <li class="zone_time">10:30 PM</li>
+                        <li class="btn__zone"><button class="btn__expired__time">Reserved</button></li>
+                    </ul>
+                </div>
 
-        <div class="month-list"></div>
+             <button class="row__back" @click.prevent @click="date_choose = true">
+                <svg class="back_arrow"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
+        </div>
+        <div  v-show="click_time" class="calender_valide">
+            <h4>ur topic</h4>
+        </div>
     </div>
 
 </template>
@@ -40,11 +89,15 @@ export default {
   data(){
     return{
       click_book :false,
-      book_date_calendar : ""
+      click_time : false,
+      book_date_calendar : "",
+      date_choose:true,
+      time_start:"",
+      time_end:""
     }
   },
   methods:{
-            calender:function(){
+    calender:function(){
                 let calendar = document.querySelector('.calendar')
 
                 const month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -92,7 +145,7 @@ export default {
                         }
                         calendar_days.appendChild(day)
                     }
-                    get_day()
+                    this.get_day()
                 }
 
                 let month_list = calendar.querySelector('.month-list')
@@ -130,14 +183,15 @@ export default {
                     ++curr_year.value
                     generateCalendar(curr_month.value, curr_year.value)
                 }
-                
-                let self_this = this
-                function get_day(){
+
+    },        
+    get_day :function(){
                     let x = document.querySelectorAll('.calendar-day-hover')
                     x.forEach(Element =>{
 
-                        Element.addEventListener('click', () =>{
-  
+                            Element.addEventListener('click', () =>{
+                            this.date_choose = false
+                            console.log(this.date_choose)
                             let day = Element.innerHTML;
                             var t = day.split(' ')
                             let r = t[0];
@@ -150,13 +204,19 @@ export default {
                             let month_book = month_index[month.innerHTML]
                             let year__book = year.innerHTML
                             let date_book = day__book + '\\'  + month_book  +  '\\' + year__book
-                            self_this.book_date_calendar =  date_book
+                            this.book_date_calendar =  date_book
 
+                            this.choode__time();
                         })
                     })
-                }
-                get_day()
-      }
+    },
+    get_time:function(time_start,time_end){
+        this.time_start = time_start
+        this.time_end = time_end
+    },
+    choode__time:function () {
+        console.log(this.book_date_calendar);
+    }
   },
   mounted(){
       this.calender();
