@@ -318,7 +318,7 @@ z-index:100000000000;
 }
 
 position: fixed;
-transform: translate(-38%, -70%) !important;
+transform: translate(-38%, -120%) !important;
 
 .calendar-day-hover{
     transition: 0.5s ease-in-out;
@@ -405,8 +405,17 @@ transform: translate(-38%, -70%) !important;
                     position: relative;
                     bottom: 10px;
                 }
-                .btn__book__time{
+                .btn__avaible_time,
+                .btn__reserve_time{
                     padding: 8px 45px;
+                }
+                .btn__reserve_time{
+                    background-color: red !important;
+                    cursor: no-drop;
+                    &:hover{
+                        color: white !important;
+                        border: none;
+                    }
                 }
                 .btn__expired__time{
                     padding: 8px 30px;
@@ -458,5 +467,12 @@ transform: translate(-38%, -70%) !important;
             }
         }
     }
+    .message_valide{
+        text-align: center;
+        svg{
+            margin: 30px 0px;
+        }
+    }
+
     
 }

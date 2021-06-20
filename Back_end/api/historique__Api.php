@@ -41,6 +41,7 @@ function historique__Api($contentType,$method,$params){
             $data = $get_Api->$method($params,$get_Db);
             // coparaisone between the today date and book date
             // if he is expired we make a requet to change status from avaible to expired
+            
             foreach($data as $user){
                 $date = $user['day'];
                 $date_book = $date;//string variable
