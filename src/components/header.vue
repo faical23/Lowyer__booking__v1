@@ -15,7 +15,10 @@
           </router-link>
     </div>
     <div class="navbar__book">
-        <button>Book</button>
+        <router-link to="/profile" tag="li" v-if="user__log">
+            <h2  class="user__name__navbar">{{user__name}}</h2>
+        </router-link>
+        <button v-else>Book</button>
     </div>  
 
   </div>
@@ -24,8 +27,35 @@
 <script>
 
 export default {
+    data(){
+    return{
+      user__log: false,
+      user__name : "faical",
+      jwt :localStorage.getItem('jwt'),
+
+    }
+  },
   name: 'navbar',
   components: {
+  },
+  methods:{
+        fetch__methode : async function (search,params,Api){
+        let rep = await fetch(`${Api + search}` , params);
+        let reponse = await rep.json();
+        return reponse;
+      },
+      check_if_is_login : function(){
+        if(this.jwt){
+          this.user__log = true
+        }
+        else{
+           this.user__log = false
+        }
+          console.log('this is navbar')
+      }
+  },
+  mounted(){
+    this.check_if_is_login();
   }
 }
 </script>

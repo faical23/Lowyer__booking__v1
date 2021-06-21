@@ -33,6 +33,14 @@
     }
     .navbar__book{
         width: 20%;
+        .user__name__navbar{
+            font-family: $primary-light;
+            font-family: 'countryside';
+            font-size: 30px;
+            font-weight: bolder !important;
+            cursor: pointer;
+            color: black
+        }
             button {
                 font-family: $primary-light;
                 font-size: 16px;

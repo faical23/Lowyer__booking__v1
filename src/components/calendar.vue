@@ -30,12 +30,6 @@
         <div v-show="date_choose == false &&  between_time_and__valide == true" class="calendar-time">
                 <h4>Choose ur time</h4>
                 <div class="calendar-time__N">
-                    <!-- <ul>
-                        <li class="zone_time">10:00 PM</li>
-                        <p>To</p>
-                        <li class="zone_time">10:30 PM</li>
-                        <li class="btn__zone"><button class="btn__book__time" @click="get_time('10:00 PM','10:30 PM'),click_time = true,date_choose = true">Book</button></li>
-                    </ul> -->
                     <ul v-for="time in time_work_data " :key="time">
                         <li class="zone_time">{{time.start_time}}</li>
                         <p>To</p>
@@ -50,7 +44,7 @@
         <div  v-show="click_time" class="calender_valide">
             <h4>write your subject her</h4>
             <textarea type="text" placeholder="Sujet" v-model="sujet"></textarea>
-            <p v-if="invalide_message">error in field please try again</p>
+            <p v-if="invalide_message" class="error__form">error in field please try again</p>
             <button @click="valide__reserve">Valide</button>
             <button class="row__back" @click.prevent @click="click_time = false , date_choose = false">
                 <svg class="back_arrow"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>

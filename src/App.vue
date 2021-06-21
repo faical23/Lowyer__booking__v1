@@ -48,9 +48,7 @@ export default {
     bottom: 0px;
     transform: translate(120%, 30%);
   }
-  body{
-    height: 100vh;
-}
+
   #app{
     position: relative;
     z-index: 10000;
@@ -60,9 +58,11 @@ export default {
     margin: 80px auto;
     border-radius: 20px;
     padding: 1% 4%;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1024px) {
         width: 85%;
+        height: 1350px;
     }
+
 
   }
 </style>

@@ -14,7 +14,6 @@
     <div v-if="historique.length > 0" class="table_historique">
       <table>
         <tr class="table__header">
-          <th>ID</th>
           <th  >Date</th>
           <th>Time start</th>
           <th>Time end</th>
@@ -22,7 +21,6 @@
           <th  >Action</th>
         </tr>
         <tr v-for="histo in historique" :key="histo"> 
-          <td>{{histo.ID}}</td>
           <td class="first__td_child">{{histo.day}}</td>
           <td>{{histo.time_start}}</td>
           <td>{{histo.time_end}}</td>
