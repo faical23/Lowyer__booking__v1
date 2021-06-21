@@ -9,7 +9,8 @@
         <button @click="booking">book</button>
     </div>
     <div class="home__illustration">
-        <img src="../assets/img/female_lowyer.jpg">
+        <!-- <img src="../assets/img/female_lowyer.jpg"> -->
+         <img src="../assets/img/illu_1.jpg">
     </div>
   </div>
   <Myfooter/>

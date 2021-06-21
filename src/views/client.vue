@@ -37,8 +37,9 @@
     </div>
 
       <button @click="new__book = true">Add</button>
-      <div v-if="new__book" class="booking_calendar">
+      <div v-if="new__book" class="booking_calendar" :style="historique.length > 0 ? 'transform: translate(-38%, -120%) !important;' : 'transform: translate(-38%, -60%) !important;' ">
           <calendar :Token="Token"></calendar>
+          <!-- transform: translate(-38%, -160%) !important; -->
       </div>
     </div>
     </div>

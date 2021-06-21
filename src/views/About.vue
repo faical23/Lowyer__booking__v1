@@ -1,16 +1,26 @@
 <template>
   <Myheader/>
+  <div class="home">
+    <Inscription v-if="click_book" ></Inscription>
+    <div class="home__illustration">
+      <img src="../assets/img/Lawyer-bro.png"></div>
+    <div class="home__content about_conntent">
+        <h1 class="f">About Us</h1>
+        <p>Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page
+          Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page
+        </p>
+        <button @click="booking">book</button>
+    </div>
 
-  <div class="about">
-    <h1>this is About page</h1>
-    <button @click="booking">book</button>
-    <Inscription v-if="click_book"></Inscription> 
   </div>
+  <Myfooter/>
+
 </template>
 
 <script>
 
 import Inscription from '../components/Inscription.vue'
+import Myfooter from '../components/footer.vue'
 
 import Myheader from '../components/header.vue'
 
@@ -24,7 +34,9 @@ export default {
   },
   components: {
     Inscription,
-    Myheader
+    Myheader,
+      Myfooter,
+
     },
   methods:{
     booking:function(){
