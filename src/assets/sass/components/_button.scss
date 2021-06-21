@@ -1,0 +1,31 @@
+.btn {
+    font-family: $primary-light;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+    font-weight: 300;
+    border-radius: 30px;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+.primary_GetStarted {
+    @extend .btn;
+    background-color: $primary-100;
+    color: white;
+    &:hover {
+        background-color: white;
+        color: $primary-100;
+        border: 1px solid $primary-100;
+    }
+}
+
+.secondry_GetStarted {
+    @extend .btn;
+    background-color: white;
+    color: $primary-100;
+    ;
+    &:hover {
+        background-color: $primary-100;
+        color: white;
+    }
+}

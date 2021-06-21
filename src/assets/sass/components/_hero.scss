@@ -1,0 +1,26 @@
+.hero{
+    padding-top: 150px;
+    .hero__container{
+        background: $primary-300;
+        border-radius: 20px;
+        padding: 40px 60px;
+        color: white;
+        h1,p{
+            width: 70%;
+            padding-bottom: 10px;
+            color: white;
+        }
+        p{
+            width: 60%;
+            line-height: 30px;
+        }
+        @media only screen and (max-width: 560px) {
+            text-align: center;
+            h1,p{
+                width: 100%;
+            }
+        }
+    }
+
+    
+}

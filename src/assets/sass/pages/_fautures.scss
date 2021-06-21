@@ -1,0 +1,371 @@
+
+.package{
+    padding-top: 100px;
+    h2,p{
+        text-align: center;
+    }
+    .package__paraghraphe{
+        width: 40%;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .package__container{
+
+        padding: 0% 3%;
+        .row{
+            align-items: center;
+        }
+        .package__container__options{
+            h3{
+                width: 50%;
+                line-height: 40px;
+                padding-bottom: 20px;
+            }
+            .options{
+                display: flex;
+                align-items: baseline;
+                p{
+                    padding-left: 15px;
+                    width: 60%;
+                    font-size: 17px;
+                    text-align: start;
+                }
+                svg{
+                    position: relative;
+                    top: 8px;
+                }
+            }
+        }
+        .left_options,.right_options{
+            position: relative;
+        }
+        .left_options{
+            left: 180px;
+        }
+        .right_options{
+            left: 50px;
+        }
+        .package__container__img{
+            width: 80%;
+            margin: auto;
+        }
+    }
+    @media only screen and (max-width: 1420px) {
+        .package__paraghraphe{
+            width: 80%;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 80px;
+        }
+        .package__container__options{
+            h3{
+                width: 80% !important;
+            }
+            .options{
+                p{
+                    width: 90% !important;
+                }
+
+            }
+        }
+            .left_options{
+                left: 50px !important;
+            }
+            .right_options{
+                left: 0px !important;
+            }
+        
+    }
+    @media only screen and (max-width: 1024px) {
+        .option_1_img{
+            margin-top: 0px;
+        }
+ 
+        img{
+            margin: 30px 0px;
+            width: 100%;
+        }
+        .firstImg{
+            margin: 0px;
+        }
+        .third_img_option,.second_img_option{
+            margin-bottom: 50px;
+        }
+            .row{
+                margin-bottom: 60px;
+            }
+            .package__container__options{
+                text-align: start;
+                h3{
+                    width: 100% !important;
+                }
+                .options{
+                    width: 75%;
+                    p{
+                        width: 100% !important;
+                    }
+
+                }
+            }
+            .left_options{
+                left: 0px !important;
+            }
+    }
+    @media only screen and (max-width: 768px) {
+            .package__container__options{
+                .options{
+                    width: 100%;
+                }
+            }
+
+    }
+    @media only screen and (max-width: 560px) {
+        .package__container__options{
+            text-align: center;
+            h3{
+                width: 100% !important;
+            }
+            .options{
+                width: 100%;
+                p{
+                    width: 100% !important;
+                    font-size: 14px;
+                }
+
+            }
+        }
+    .option_1_img,.option_3_img{
+        order: 1 !important;
+    }
+
+}
+}
+.video_secion {
+    background-color: $primary-300;
+    margin-top: 40px;
+    padding: 35px 0px;
+    margin-top: 200px;
+    video {
+        width: 100%;
+        position: relative;
+        bottom: 100px;
+        left: 100px;
+        box-shadow: 0px 0px 3px 0px black;
+        border-radius: 10px;
+    }
+    P{
+        color: $black;
+        font-size: 15px;
+    }
+    .conetnt {
+        background-color: white;
+        margin-left: auto;
+        padding: 40px;
+        border-radius: 10px;
+        position: relative;
+        right: 50px;
+        z-index: 100;
+    }
+    @media only screen and (max-width: 768px) {
+        .conetnt {
+            right: 0px;
+        }
+        video {
+            width: 120%;
+            position: relative;
+            left: 0px;
+        }
+        
+    }
+    @media only screen and (max-width: 560px) {
+        margin-top: 10px;
+
+        video {
+            width: 100%;
+            bottom: 0px;
+            margin-bottom: 50px;
+        }
+        
+    }
+}
+
+.whatWeCanDo{
+    padding-top:100px;
+    .whatWeCanDo__container{
+        .row{
+            align-items: center;
+        }
+        .card{
+            margin-bottom: 30px;
+            padding: 40pX 50px;
+            padding-bottom: 50px;
+            width: 80%;
+            border: none;
+            box-shadow: 0px 0px 5px 0px black;
+            position: relative;
+            border-radius: 10px;
+            svg{
+                margin-bottom: 40px;
+            }
+            h3{
+                margin-bottom: 40px;
+            }
+            p{
+                width: 90%;
+                font-size: 15px;
+            }
+        }
+        .left_cards{
+            position: relative;
+            top: 60px;
+            right: 50px;
+        }
+        .whatWeCanDo__container__text{
+            h2{
+                font-size: 38px;
+            }
+            p{
+                width: 100%;
+                font-size: 15px;
+            }
+            .PaaraWhatWeDo{
+                color: $primary-300;
+                font-size: 17px;
+            }
+        }
+
+
+    }
+    @media only screen and (max-width: 1024px) {
+        .whatWeCanDo__container{
+
+            .card{
+                width: 100%;
+            }
+            .left_cards{
+
+                right: 0px;
+            }
+            .whatWeCanDo__container__text{
+                h2{
+                    font-size: 38px;
+                }
+                p{
+                    width: 100%;
+                    font-size: 15px;
+                }
+            }
+    
+        } 
+    }
+    @media only screen and (max-width: 768px) {
+        .whatWeCanDo__container{
+
+            .card{
+                padding: 20pX 10px;
+                padding-bottom: 30px;  
+                width: 100%;
+                margin: auto;
+                margin-bottom: 20px;
+                padding: 16px 30px;
+                  }
+        } 
+    }
+    @media only screen and (max-width: 560px) {
+        .whatWeCanDo__container{
+
+            .card{
+                width: 80%;
+                margin: auto;
+                margin-bottom: 20px;
+                padding: 16px 30px;
+            }
+            .left_cards{
+                top: 0px;
+            }
+            .whatWeCanDo__container__text{
+                text-align: center;
+                padding-bottom: 40px;
+            }
+            .whatWeCanDo__container__features1_zone{
+                order: 1 !important;
+            }
+        } 
+
+    }
+ 
+}
+.sectionAfterwhatWeCanDo{
+    margin-top: 250px;
+
+    background-color: $primary-100;
+    .row{
+        align-items: center;
+    }
+    .sectionAfterwhatWeCanDo__container__text{
+        h2{
+            width:70%;
+            line-height: 50px;
+            font-size: 35px;
+            color: white !important;
+            margin-bottom: 30px;
+        }
+    }
+    .sectionAfterwhatWeCanDo__container__img{
+        position: relative;
+        bottom: 110px;
+        img{
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px 0px black;
+        }
+    }
+}
+.statistique{
+    padding-top: 150px;
+    padding-bottom: 100px;
+    .statistique__container{
+        .statistique__container__salons{
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/statiqtique/guilherme-petri-PtOfbGkU3uI-unsplash\ 1.png");
+        }
+        .statistique__container__users{
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/statiqtique/engin-akyurt-35NAaB_Nmx8-unsplash\ 1.png");
+        }
+        .statistique__container__products{
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/statiqtique/shari-sirotnak-oM5YoMhTf8E-unsplash\ 1.png");
+        }
+        .statistique__container__salons,.statistique__container__users,.statistique__container__products{
+            
+            border-radius: 10px;
+            text-align: center;
+            padding:30px 80px;
+            height: 280px;
+            cursor: pointer;
+            overflow: hidden;
+            p{
+                position: relative;
+                top: 200px;
+                color: white;
+                transition: 0.3s ease-in-out;
+                
+            }
+            h3 {
+                position: relative;
+                font-size: 30px;
+                top: 90px;
+                border-bottom: 1px solid white;
+                color: white;
+                padding-bottom: 10px;
+                transition: 0.3s ease-in-out;
+            }
+            &:hover p{
+                transition: 0.3s ease-in-out;
+                top: 30px;
+            }
+            &:hover h3{
+                top: 0px;
+            }
+        }
+    }
+}

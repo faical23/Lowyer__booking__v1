@@ -1,0 +1,81 @@
+
+.PrivacyPolicy{
+    padding: 60px 0px;
+    .PrivacyPolicy__centent{
+        display: flex;
+        .PrivacyPolicy__centent_socielMedia{
+            .PrivacyPolicy__centent_socielMedia_container{
+                position: sticky;
+                top: 100px;
+                svg{
+                    display: block;
+                    margin:15px 0px ;
+                }
+            }
+
+        }
+        .PrivacyPolicy__centent_box{
+            width: 90%;
+            border: 1px solid $secondry-200;
+            padding: 50px 100px;
+            border-radius: 20px;
+            margin-left: auto;
+            .PrivacyPolicy__centent_box_overview{
+                padding-bottom: 20px;
+                h3{
+                    font-size: 30px;
+                    color: $primary-100;
+                    position: relative;
+                    padding-bottom: 20px;
+                    &::after{
+                        content: '';
+                        width: 10%;
+                        height: 5px;
+                        background-color: $primary-100;
+                        position: absolute;
+                        top: 40px;
+                        left: 2px;
+                    }
+                }
+                
+                p{
+                     color: $black;
+                     font-size: 17px;
+                     line-height: 40px;
+                }
+            }
+        }
+        @media only screen and (max-width: 768px) {
+            .PrivacyPolicy__centent_box{
+                padding: 50px;
+
+            }
+            .PrivacyPolicy__centent_box_overview{
+                h3::after{
+                        width: 17% !important;
+                    }
+                }
+        }
+        @media only screen and (max-width: 560px) {
+            display: block;
+            .PrivacyPolicy__centent_box_overview{
+                h3::after{
+                        width: 24% !important;
+                    }
+                }
+            .PrivacyPolicy__centent_socielMedia_container{
+                display: flex;
+
+            }
+            svg{
+                display: block;
+                margin:15px 20px !important ;
+            }
+            .PrivacyPolicy__centent_box{
+                width: 100%;
+                padding: 50px 10px;
+            }
+        }
+    }
+}
+

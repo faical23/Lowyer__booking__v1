@@ -15,9 +15,18 @@ body {
     overflow-x: hidden;
 }
 
+.MyContainer{
+    padding: 0% 15%;
+    @media only screen and (max-width: 1024px) {
+        padding: 0% 6%;
+    }
+}
 
-
-
+.picture_before_footer{
+    img{
+        border-radius: 20px;
+    }
+}
 /* HTML5 display-role reset for older browsers */
 
 
