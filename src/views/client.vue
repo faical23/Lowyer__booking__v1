@@ -1,4 +1,5 @@
 <template>
+    <Myheader/>
   <div class="client">
     <div class="user_data">
         <img src="../assets/img/avatar.png">
@@ -46,6 +47,7 @@
 <script>
 
 import calendar from '../components/calendar.vue'
+import Myheader from '../components/header.vue'
 
 
 export default {
@@ -68,7 +70,9 @@ export default {
     }
   },
   components: {
-    calendar
+    calendar,
+    Myheader,
+
     },
   methods:{
     fetch__methode : async function (search,params,Api){

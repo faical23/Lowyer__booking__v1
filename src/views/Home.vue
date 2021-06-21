@@ -1,4 +1,5 @@
 <template>
+  <Myheader/>
   <div class="home">
     <Inscription v-if="click_book" ></Inscription>
     <div class="home__content">
@@ -18,6 +19,7 @@
 
 import Inscription from '../components/Inscription.vue'
 import Myfooter from '../components/footer.vue'
+import Myheader from '../components/header.vue'
 
 
 
@@ -30,7 +32,8 @@ export default {
   },
   components: {
     Inscription,
-        Myfooter
+    Myfooter,
+      Myheader,
 
     },
   methods:{

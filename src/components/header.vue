@@ -52,10 +52,12 @@ export default {
            this.user__log = false
         }
           console.log('this is navbar')
-      }
+      },
   },
   mounted(){
     this.check_if_is_login();
+    // this.valide_login();
   }
 }
+
 </script>

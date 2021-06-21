@@ -1,13 +1,11 @@
 <template>
 
   <div id="nav">
-    <Myheader/>
   </div>
   <router-view/>
 </template>
 
 <script>
-import Myheader from './components/header.vue'
 
 
 export default {
@@ -18,7 +16,6 @@ export default {
         }
     },
     components:{
-     Myheader,
     }
 }
 </script>

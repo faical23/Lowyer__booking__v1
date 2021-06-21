@@ -1,4 +1,6 @@
 <template>
+  <Myheader/>
+
   <div class="about">
     <h1>this is About page</h1>
     <button @click="booking">book</button>
@@ -10,6 +12,7 @@
 
 import Inscription from '../components/Inscription.vue'
 
+import Myheader from '../components/header.vue'
 
 
 export default {
@@ -21,6 +24,7 @@ export default {
   },
   components: {
     Inscription,
+    Myheader
     },
   methods:{
     booking:function(){
