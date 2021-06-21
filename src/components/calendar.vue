@@ -255,8 +255,6 @@ export default {
                                                     // console.log(lawyer__time__work)
                                                     self_this.time_work_data = new__time_work_after_make_comparaisone
                                                     console.log(self_this.time_work_data)
-                                                    
-
                                                 })
                                             }
                                              check_time_reserve();
