@@ -1,5 +1,5 @@
 <template>
-    <Myheader/>
+    <Myheader :Fname="Fname"></Myheader>
   <div class="client">
     <div class="user_data">
         <img src="../assets/img/avatar.png">

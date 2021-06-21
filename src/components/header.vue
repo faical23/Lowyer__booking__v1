@@ -30,7 +30,7 @@ export default {
     data(){
     return{
       user__log: false,
-      user__name : "faical",
+      user__name : "Profile",
       jwt :localStorage.getItem('jwt'),
 
     }
@@ -38,6 +38,7 @@ export default {
   name: 'navbar',
   components: {
   },
+  props:['Fname'],
   methods:{
         fetch__methode : async function (search,params,Api){
         let rep = await fetch(`${Api + search}` , params);
