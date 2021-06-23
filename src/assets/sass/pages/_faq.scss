@@ -5,6 +5,9 @@
     .Faq_input{
         width: 40%;
     }
+    .active{
+        background-color:$primary-100 !important;
+      }    
     .faq__content__ButtonsAndQuestions{
         padding: 50px 0px;
         padding-bottom: 80px;
@@ -104,6 +107,3 @@
     }
 
  }
- .active{
-    background-color:$primary-100 !important;
-  }

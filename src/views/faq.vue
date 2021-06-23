@@ -1,7 +1,7 @@
 <template>
     <div class="Faq">
     <MYnavbar/>
-        <div class="faq__content">
+        <section class="faq__content">
             <div class="MyContainer">
                 <div class="__title">
                     <h1 class="__title_grey">Questions ...</h1>
@@ -35,7 +35,7 @@
                     <img src="../assets/img/barbersImg/allyson-carter-lmZ_JVfbmY4-unsplash.jpg">
                 </div>
             </div>
-        </div>
+        </section>
     <MYfooter/>
     </div>
 </template>

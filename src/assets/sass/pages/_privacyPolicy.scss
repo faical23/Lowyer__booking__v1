@@ -1,9 +1,12 @@
-
 .PrivacyPolicy{
-    padding: 60px 0px;
+    padding-bottom: 50px;
+    .__title{
+        padding-bottom: 100px;
+    }
     .PrivacyPolicy__centent{
         display: flex;
         .PrivacyPolicy__centent_socielMedia{
+            width: 10%;
             .PrivacyPolicy__centent_socielMedia_container{
                 position: sticky;
                 top: 100px;
@@ -45,10 +48,19 @@
                 }
             }
         }
+        @media only screen and (max-width: 1024px) {
+            padding: 0px;
+            .PrivacyPolicy__centent_socielMedia{
+                width: 15%;
+            }
+        }
         @media only screen and (max-width: 768px) {
             .PrivacyPolicy__centent_box{
                 padding: 50px;
 
+            }
+            .__title{
+                padding-bottom: 60px;
             }
             .PrivacyPolicy__centent_box_overview{
                 h3::after{
@@ -58,6 +70,9 @@
         }
         @media only screen and (max-width: 560px) {
             display: block;
+            .PrivacyPolicy__centent_socielMedia{
+                width: 100%;
+            }
             .PrivacyPolicy__centent_box_overview{
                 h3::after{
                         width: 24% !important;
@@ -72,7 +87,7 @@
                 margin:15px 20px !important ;
             }
             .PrivacyPolicy__centent_box{
-                width: 100%;
+                width: 94%;
                 padding: 50px 10px;
             }
         }

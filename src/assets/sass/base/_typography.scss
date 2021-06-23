@@ -125,7 +125,9 @@ a {
         }
     }
     @media only screen and (max-width: 560px) {
-        padding-bottom: 50px;
+        padding:0px !important;
+        padding-bottom: 50px !important;
+
         .__title_grey{
             font-size: 3.4rem;
         }
