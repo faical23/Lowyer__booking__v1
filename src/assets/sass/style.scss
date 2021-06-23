@@ -8,10 +8,20 @@
 @import "components/button";
 @import "components/input";
 @import "components/hero";
+@import "components/inscription";
+@import "components/calendar";
 // // layout
 @import "layout/navbar";
 @import "layout/footer";
-
 // pages 
+<<<<<<< HEAD
 @import "pages/faq";
 @import "pages/privacyPolicy";
+=======
+@import "pages/home";
+@import "pages/clinet";
+@import "pages/about";
+@import "pages/contact";
+
+
+>>>>>>> 7899ad8ff51357f720d0f2ba9176a86b36eaca04
